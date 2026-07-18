@@ -1,0 +1,41 @@
+/* style.css — minor custom styles for IBM Banking App */
+
+body {
+    min-height: 100vh;
+}
+
+/* Balance display */
+.display-4 {
+    letter-spacing: -1px;
+}
+
+/* Card hover lift effect */
+.card {
+    transition: box-shadow 0.15s ease-in-out;
+}
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Action buttons */
+.btn-lg {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Navbar brand */
+.navbar-brand {
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+/* Form inputs */
+.form-control:focus {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+}
+
+/* Footer */
+footer {
+    color: #6c757d;
+}
