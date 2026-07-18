@@ -158,8 +158,6 @@ def withdraw():
 
         if not raw:
             error = "Amount is required"
-        elif float(raw) <= 0 if raw.replace('.', '', 1).lstrip('-').isdigit() or _is_numeric(raw) else False:
-            error = "Amount must be greater than zero"
         else:
             try:
                 amount = float(raw)
