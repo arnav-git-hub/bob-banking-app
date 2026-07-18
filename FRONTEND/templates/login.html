@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %}Login — IBM Banking{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+
+        <div class="card shadow-sm mt-4">
+            <div class="card-body p-4">
+                <h2 class="card-title text-center mb-4">Sign In</h2>
+
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+
+                <form action="{{ url_for('login') }}" method="POST" novalidate>
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-semibold">Username</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            name="username"
+                            placeholder="Enter your username"
+                            autocomplete="username"
+                            required
+                        />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                        <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        />
+                    </div>
+
+                    <div class="d-grid mt-4">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <p class="text-center text-muted mt-3" style="font-size:0.85rem;">
+            Demo accounts: alice / bob / charlie — see <code>seed.py</code> for passwords.
+        </p>
+    </div>
+</div>
+{% endblock %}
