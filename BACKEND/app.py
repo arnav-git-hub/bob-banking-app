@@ -157,19 +157,28 @@ def withdraw():
         amount_value = raw
 
         if not raw:
-            error = "Please enter an amount."
+            error = "Amount is required"
+        elif float(raw) <= 0 if raw.replace('.', '', 1).lstrip('-').isdigit() or _is_numeric(raw) else False:
+            error = "Amount must be greater than zero"
         else:
             try:
                 amount = float(raw)
             except ValueError:
                 error = "Amount must be a number."
             else:
-                success, msg = account_service.withdraw(session["user_id"], amount)
-                if not success:
-                    error = msg
+                if amount <= 0:
+                    error = "Amount must be greater than zero"
                 else:
-                    flash("Withdrawal successful!", "success")
-                    return redirect(url_for("dashboard"))
+                    balance = account_service.get_balance(session["user_id"])
+                    if amount > balance:
+                        error = "Insufficient funds"
+                    else:
+                        success, msg = account_service.withdraw(session["user_id"], amount)
+                        if not success:
+                            error = msg
+                        else:
+                            flash("Withdrawal successful!", "success")
+                            return redirect(url_for("dashboard"))
 
     return render_template("withdraw.html", error=error, amount_value=amount_value)
 
